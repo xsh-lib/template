@@ -50,19 +50,19 @@ jobs:
         run: |
           export REPO_NAME=$(echo $INFO | jq -r '.repository.name')
           # Run cookiecutter
-          pushd /tmp
-          cookiecutter gh:xsh-lib/template --no-input \
+          cookiecutter . --output-dir /tmp --no-input \
             lib_name=$REPO_NAME \
             description="$(echo $INFO | jq -r .repository.description)" \
             github_username="$(echo $INFO | jq -r .repository.owner.login)" \
             author_name="$(echo $INFO | jq -r .repository.owner.name)"
-          popd
           # Move generated content to root directory of repo
           mv /tmp/$REPO_NAME/* .
           # And .gitignore too:
           mv /tmp/$REPO_NAME/.gitignore .
-          # Delete the setup.yml workflow, it has served its purpose
+          # Delete the template files, they have served their purpose
           rm .github/workflows/setup.yml
+          rm cookiecutter.json
+          rm -rf '{{cookiecutter.lib_name}}'
 
       - name: Force push new repo contents
         uses: stefanzweifel/git-auto-commit-action@v4
