@@ -55,14 +55,15 @@ jobs:
             description="$(echo $INFO | jq -r .repository.description)" \
             github_username="$(echo $INFO | jq -r .repository.owner.login)" \
             author_name="$(echo $INFO | jq -r .repository.owner.name)"
-          # Move generated content to root directory of repo
-          mv /tmp/$REPO_NAME/* .
-          # And .gitignore too:
-          mv /tmp/$REPO_NAME/.gitignore .
           # Delete the template files, they have served their purpose
           rm .github/workflows/setup.yml
           rm cookiecutter.json
           rm -rf '{{cookiecutter.lib_name}}'
+          rm -rf assets
+          # Move generated content to root directory of repo
+          mv /tmp/$REPO_NAME/* .
+          # And .gitignore too:
+          mv /tmp/$REPO_NAME/.gitignore .
 
       - name: Force push new repo contents
         uses: stefanzweifel/git-auto-commit-action@v4
