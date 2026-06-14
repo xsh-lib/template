@@ -64,6 +64,10 @@ jobs:
           mv /tmp/$REPO_NAME/* .
           # And .gitignore too:
           mv /tmp/$REPO_NAME/.gitignore .
+          # And the generated CI workflow (hidden .github dir isn't matched by
+          # the glob above); the template's own .github/workflows/ already
+          # exists here (setup.yml was just removed from it).
+          mv /tmp/$REPO_NAME/.github/workflows/test.yml .github/workflows/
 
       - name: Force push new repo contents
         uses: stefanzweifel/git-auto-commit-action@v4
