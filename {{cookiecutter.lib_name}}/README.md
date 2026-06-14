@@ -6,11 +6,14 @@ About xsh and its libraries, check out [xsh document](https://github.com/alexzha
 
 ## Requirements
 
-1. bash
+1. bash or zsh
 
     Tested with bash:
     * 4.3.48 on Linux
     * 3.2.57 on macOS
+
+    The utilities also run under **zsh** (the default shell on modern macOS);
+    xsh executes them under zsh's ksh emulation. Requires xsh >= 0.7.0 for zsh.
 
 ## Dependency
 

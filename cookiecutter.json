@@ -2,5 +2,6 @@
   "lib_name": "",
   "description": "",
   "github_username": "",
-  "author_name": ""
+  "author_name": "",
+  "_copy_without_render": [".github/workflows/test.yml"]
 }
